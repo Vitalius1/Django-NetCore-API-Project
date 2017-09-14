@@ -1,0 +1,45 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li><a href="/dashboard/1">Home</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="http://localhost:8000/login"><span class="glyphicon glyphicon-user"></span> Become a Seller</a></li>
+      <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div id="search-box">
+  <h1>Filters</h1>
+  <a href='/dashboard/2'>Sort by Bid Ascending</a><br>
+  <a href='/dashboard/3'>Sort by Bid Descending</a><br>
+  <a href='/dashboard/4'>Sort by End Date</a><br>
+
+  
+</div>
+
+<div id="all">
+    <div id="list">
+        @{
+            foreach(var p in ViewBag.Products)
+            {
+                string time = DateTime.Parse(p["product_end_date"]).ToString("MM/dd/yyyy HH:mm:ss");
+                <div class="prod">
+                    <a href='/getProduct/@p["id"]'><img src='@p["photo"]' alt="Picture">
+                    <h4>@p["product_name"]</h4></a>
+                    <h6>End Date:</h6>
+                    <h5 style="color:red">@DateTime.Parse(p["product_end_date"]).ToString("MMM dd, yyyy HH:mm")</h5>
+                    <h6>Time Remaining:</h6>
+                    <div class="cd" data-countdown="@time"></div>
+
+                    <h2>$@p["product_starting_bid"]</h2 style="color:red">
+                </div>
+            }
+        }
+    </div>
+</div>

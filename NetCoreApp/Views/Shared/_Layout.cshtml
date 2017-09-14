@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Auction</title>
+    
+    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
+            asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.css"
+            asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+    
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="~/js/jquery.countdown.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(function(){
+                $('[data-countdown]').each(function() {
+                    var $this = $(this), 
+                    finalDate = $(this).data('countdown');
+                    console.log(finalDate);
+                    console.log("hello world");
+                    $this.countdown(finalDate, function(event) {
+                        $(this).html(event.strftime('%D days %H:%M:%S'));
+                        console.log("hi");
+                    });
+                });
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+        
+        
+        <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
